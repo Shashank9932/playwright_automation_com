@@ -7,12 +7,12 @@ import { test } from '../fixtures/ui-test';
 test.use({ authenticated: false });
 
 
-test('Sign Up', async ({pages,page }) => { 
+test('Sign Up', async ({pages,signupData }) => { 
 
     const signuppage =pages.get('signup');
     
   
-  await signuppage.completeSignUp('John', 'Doe', 'test@gmail.com', '123456', page);
+  await signuppage.completeSignUp(signupData);
 
 }
 )

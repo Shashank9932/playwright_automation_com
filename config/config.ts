@@ -13,7 +13,7 @@ dotenv.config();
 
 export const config = {
     environment: process.env.TEST_ENVIRONMENT || 'local',
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    baseUrl: process.env.WEB_BASE_URL || 'http://localhost:3000',
     apiEndpoint: process.env.API_ENDPOINT || 'http://localhost:3000/api',
     users: {
         user1Password: process.env.USER1_PASSWORD || 'password1',

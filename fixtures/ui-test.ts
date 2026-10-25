@@ -1,5 +1,7 @@
 import  {test as base,expect} from '@playwright/test';
 import { PageFactory } from '../pages/page-factory';
+import { generateSignUpData, type SignUpData } from '../data/signup-data';
+import { Sign } from 'node:crypto';
 
 type UiOptions = {
     authenticated: boolean;
@@ -7,6 +9,7 @@ type UiOptions = {
 
 type UiFixtures = {
     pages: PageFactory;
+    signupData:  SignUpData;
     authentication: void;
 }
 
@@ -18,6 +21,10 @@ export const test = base.extend<UiFixtures & UiOptions>({
     pages: async ({ page }, use) => {
         //const signUpPage = new SignUpPage(page);
         await use(new PageFactory(page));
+    },
+    signupData: async ({}, use) => {
+        
+        await use(generateSignUpData());
     },
     authentication: async ({  authenticated, pages }, use) => {
         if (authenticated) {
@@ -32,6 +39,7 @@ export const test = base.extend<UiFixtures & UiOptions>({
         }
 
        const signup = pages.get('signup'); 
-       await signup.completeSignUp('John', 'Doe',"test@gmail.com", "    123456", signup.signupBtn.page());
+     
     }
+    
 })
