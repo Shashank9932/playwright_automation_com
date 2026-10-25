@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "api:validate": "openapi-generator-cli validate -i openapi/swaggger.json",
+    "api:generate": "openapi-generator-cli generate -i openapi/swaggger.json -g typescript-fetch -o src/api/generated --additional-properties=supportsES6=true,modelPropertyNaming=original,modelPackage=models,apiPackage=apis",
+    "typecheck": "tsc --noEmit",
+    "test:api": "playwright test --project=api"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.42.0",
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.3.0",
     "dotenv": "^18.0.9"
