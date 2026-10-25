@@ -1,12 +1,12 @@
 import  {test as base,expect} from '@playwright/test';
-import { SignUpPage } from '../pages/SignUpPage';
+import { PageFactory } from '../pages/page-factory';
 
 type UiOptions = {
     authenticated: boolean;
 }
 
 type UiFixtures = {
-    signUpPage: SignUpPage;
+    pages: PageFactory;
     authentication: void;
 }
 
@@ -15,11 +15,11 @@ export const test = base.extend<UiFixtures & UiOptions>({
     storageState: async ({}, use ) => {
         await use({cookies:[],origins:[]});
     },
-    signUpPage: async ({ page }, use) => {
-        const signUpPage = new SignUpPage(page);
-        await use(signUpPage);
+    pages: async ({ page }, use) => {
+        //const signUpPage = new SignUpPage(page);
+        await use(new PageFactory(page));
     },
-    authentication: async ({ signUpPage, authenticated }, use) => {
+    authentication: async ({  authenticated, pages }, use) => {
         if (authenticated) {
             const email = process.env.TEST_EMAIL ;
             const password = process.env.TEST_PASSWORD ;
@@ -30,6 +30,8 @@ export const test = base.extend<UiFixtures & UiOptions>({
           );
         }
         }
-       await signUpPage.completeSignUp('John', 'Doe',"test@gmail.com", "    123456", signUpPage.signupBtn.page());
+
+       const signup = pages.get('signup'); 
+       await signup.completeSignUp('John', 'Doe',"test@gmail.com", "    123456", signup.signupBtn.page());
     }
 })

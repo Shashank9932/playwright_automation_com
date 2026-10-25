@@ -3,6 +3,7 @@ import { Locator, Page } from "@playwright/test";
 
 export class LoginPage {
     
+    
     readonly loginLink: Locator
     readonly customerLoginHeading: Locator
     readonly emailAddressLabel: Locator
@@ -13,7 +14,7 @@ export class LoginPage {
     readonly signInBtn: Locator
     readonly captchaChallange: Locator
     readonly captchaVerifyAnswersBtn: Locator
-    constructor(page: Page) {
+    constructor(private readonly page: Page) {
        
         
 

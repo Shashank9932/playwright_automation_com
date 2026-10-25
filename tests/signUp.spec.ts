@@ -7,9 +7,10 @@ import { test } from '../fixtures/ui-test';
 test.use({ authenticated: false });
 
 
-test('Sign Up', async ({page }) => { 
+test('Sign Up', async ({pages,page }) => { 
 
-    const signuppage = new SignUpPage(page);
+    const signuppage =pages.get('signup');
+    
   
   await signuppage.completeSignUp('John', 'Doe', 'test@gmail.com', '123456', page);
 
