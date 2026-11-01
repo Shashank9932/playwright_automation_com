@@ -52,7 +52,15 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+    },
+    
+    {
+      name:'api-petstore',
+      testMatch: '**/api/**/*.spec.ts',
+      use: {
+        trace:'off'
     }
+  },
 /*
     {
       name: 'firefox',
