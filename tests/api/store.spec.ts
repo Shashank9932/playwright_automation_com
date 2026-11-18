@@ -8,6 +8,7 @@ test('should retrieve store inventory', async ({ storeApi }) => {
     console.log('status',inventory.status);
    
     expect(inventory).toBeDefined();
+    expect(inventory.raw.status).toBe(200);
     expect(typeof inventory).toBe('object');
     // Additional assertions can be added based on the expected structure of the inventory
 });
